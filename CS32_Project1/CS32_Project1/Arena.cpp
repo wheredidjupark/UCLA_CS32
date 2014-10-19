@@ -10,12 +10,13 @@
 #include <iostream>
 #include "Player.h"
 #include "Zombie.h"
+#include "History.h" //////ADDED
 
 
 using namespace std;
 
 
-Arena::Arena(int nRows, int nCols)
+Arena::Arena(int nRows, int nCols): m_history(nRows, nCols) //got it done with help from solution.... stupid initialization list
 {
     if (nRows <= 0  ||  nCols <= 0  ||  nRows > MAXROWS  ||  nCols > MAXCOLS)
     {
@@ -28,6 +29,7 @@ Arena::Arena(int nRows, int nCols)
     m_player = nullptr;
     m_nZombies = 0;
     m_turns = 0;
+    
     for (int r = 1; r <= m_rows; r++)
         for (int c = 1; c <= m_cols; c++)
             setCellStatus(r, c, EMPTY);
@@ -186,6 +188,12 @@ void Arena::moveZombies()
     // Another turn has been taken
     m_turns++;
 }
+
+History& Arena::history()
+{
+    return m_history;
+}
+
 
 bool Arena::isPosInBounds(int r, int c) const
 {

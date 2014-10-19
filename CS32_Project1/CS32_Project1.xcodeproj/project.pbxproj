@@ -13,6 +13,7 @@
 		80FF5B8719F36AAC00EE1FC3 /* Arena.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80FF5B8619F36AAC00EE1FC3 /* Arena.cpp */; };
 		80FF5B8919F36B7100EE1FC3 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80FF5B8819F36B7100EE1FC3 /* Player.cpp */; };
 		80FF5B8B19F36C0000EE1FC3 /* Zombie.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80FF5B8A19F36C0000EE1FC3 /* Zombie.cpp */; };
+		80FF5B8E19F36D0100EE1FC3 /* History.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80FF5B8C19F36D0100EE1FC3 /* History.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +41,8 @@
 		80FF5B8619F36AAC00EE1FC3 /* Arena.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Arena.cpp; sourceTree = "<group>"; };
 		80FF5B8819F36B7100EE1FC3 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		80FF5B8A19F36C0000EE1FC3 /* Zombie.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Zombie.cpp; sourceTree = "<group>"; };
+		80FF5B8C19F36D0100EE1FC3 /* History.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = History.cpp; sourceTree = "<group>"; };
+		80FF5B8D19F36D0100EE1FC3 /* History.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = History.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,8 @@
 				80FF5B8619F36AAC00EE1FC3 /* Arena.cpp */,
 				80FF5B8119F366C800EE1FC3 /* Game.h */,
 				80FF5B8419F3698000EE1FC3 /* Game.cpp */,
+				80FF5B8D19F36D0100EE1FC3 /* History.h */,
+				80FF5B8C19F36D0100EE1FC3 /* History.cpp */,
 			);
 			path = CS32_Project1;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 				80FF5B8319F3685A00EE1FC3 /* utilities.cpp in Sources */,
 				80593A5219F2F437004D83D1 /* main.cpp in Sources */,
 				80FF5B8919F36B7100EE1FC3 /* Player.cpp in Sources */,
+				80FF5B8E19F36D0100EE1FC3 /* History.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

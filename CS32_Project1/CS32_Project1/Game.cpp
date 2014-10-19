@@ -11,6 +11,7 @@
 #include "globals.h"
 #include "Arena.h"
 #include "Player.h"
+#include "History.h"
 
 using namespace std;
 
@@ -65,7 +66,7 @@ string Game::takePlayerTurn()
 {
     for (;;)
     {
-        cout << "Your move (n/e/s/w/x or nothing): ";
+        cout << "Your move (n/e/s/w/x/h or nothing): "; //h added
         string playerMove;
         getline(cin, playerMove);
         
@@ -83,10 +84,20 @@ string Game::takePlayerTurn()
         {
             if (tolower(playerMove[0]) == 'x')
                 return player->dropBrain();
-            else if (charToDir(playerMove[0], dir))
-                return player->move(dir);
+            else
+            {
+                if (tolower(playerMove[0] == 'h'))//ADDED
+                {
+                    m_arena->history().display();// ADDED
+                }
+                else
+                {
+                    if (charToDir(playerMove[0], dir))
+                        return player->move(dir);
+                }
+            }
         }
-        cout << "Player move must be nothing, or 1 character n/e/s/w/x." << endl;
+        cout << "Player move must be nothing, or 1 character n/e/s/w/x/h." << endl;
     }
 }
 

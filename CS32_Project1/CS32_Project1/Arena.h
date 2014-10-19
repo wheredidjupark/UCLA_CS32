@@ -12,6 +12,7 @@
 
 #include <string>
 #include "globals.h"
+#include "History.h" //ADDED
 
 class Player;
 class Zombie;
@@ -38,6 +39,7 @@ public:
     bool addZombie(int r, int c);
     bool addPlayer(int r, int c);
     void moveZombies();
+    History& history(); //ADDED
     
 private:
     int     m_grid[MAXROWS][MAXCOLS];
@@ -47,6 +49,7 @@ private:
     Zombie* m_zombies[MAXZOMBIES];
     int     m_nZombies;
     int     m_turns;
+    History m_history; //ADDED. didn't know i should be putting the private here... 
     
     // Helper functions
     void checkPos(int r, int c) const;

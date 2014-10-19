@@ -8,6 +8,7 @@
 
 #include "Player.h"
 #include "Arena.h"
+#include "history.h"
 #include <iostream>
 
 using namespace std;
@@ -51,7 +52,8 @@ string Player::dropBrain()
 {
     if (m_arena->getCellStatus(m_row, m_col) == HAS_BRAIN)
         return "There's already a brain at this spot.";
-    m_arena->setCellStatus(m_row, m_col, HAS_BRAIN);
+    m_arena->setCellStatus(m_row, m_col, HAS_BRAIN); //else...
+    m_arena->history().record(m_row, m_col);
     return "A brain has been dropped.";
 }
 
