@@ -32,5 +32,50 @@ public:
     // Exchange the contents of this set with the other one.
     
 private:
-    
+    //int for position within the Set??
+    std::string content;
+    Set* nextElement;
 };
+
+Set::Set()
+{
+    content = "";
+    nextElement = nullptr;
+}
+
+
+bool Set::empty()
+{
+    return false; //temporary
+}
+
+int Set::size()
+{
+    return -1; //temporary
+}
+
+bool Set::insert(const std::string& value)
+{
+    return false; //temporary
+}
+
+bool Set::erase(const std::string& value)
+{
+    return false; //temporary
+}
+
+bool Set::contains(const std::string& value)
+{
+    return false; //temporary
+}
+
+bool Set::get(int i, std::string& value)
+{
+    return false; //temporary
+}
+
+void Set::swap(Set& other)
+{
+    
+}
+
