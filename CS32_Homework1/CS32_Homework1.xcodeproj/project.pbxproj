@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8027F04F19F485C10097E99E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8027F04E19F485C10097E99E /* main.cpp */; };
+		804A3BE519F732F9008344C1 /* Set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 804A3BE319F732F9008344C1 /* Set.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		8027F04B19F485C10097E99E /* CS32_Homework1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CS32_Homework1; sourceTree = BUILT_PRODUCTS_DIR; };
 		8027F04E19F485C10097E99E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		804A3BE319F732F9008344C1 /* Set.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Set.cpp; sourceTree = "<group>"; };
+		804A3BE419F732F9008344C1 /* Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Set.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				8027F04E19F485C10097E99E /* main.cpp */,
+				804A3BE319F732F9008344C1 /* Set.cpp */,
+				804A3BE419F732F9008344C1 /* Set.h */,
 			);
 			path = CS32_Homework1;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				804A3BE519F732F9008344C1 /* Set.cpp in Sources */,
 				8027F04F19F485C10097E99E /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,6 +238,7 @@
 				8027F05419F485C10097E99E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
