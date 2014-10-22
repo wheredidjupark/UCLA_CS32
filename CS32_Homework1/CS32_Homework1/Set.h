@@ -9,8 +9,7 @@
 #ifndef Set_h
 #define Set_h
 
-#include <string>
-typedef std::string ItemType;  // define Number as a synonym for int
+typedef unsigned long ItemType;  // define Number as a synonym for int
 
 const int DEFAULT_MAX_ITEMS = 200;
 
