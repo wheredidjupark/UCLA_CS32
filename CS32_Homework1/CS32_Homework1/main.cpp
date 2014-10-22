@@ -1,7 +1,6 @@
 #include <string>
-#include <iostream>
-using namespace std;
 
+typedef int ItemType;  // define Number as a synonym for int
 
 const int DEFAULT_MAX_ITEMS = 200;
 
@@ -14,21 +13,21 @@ public:
     
     int size() const;    // Return the number of items in the set.
     
-    bool insert(const std::string& value);
+    bool insert(const ItemType& value);
     // Insert value into the set if it is not already present.  Return
     // true if the value was actually inserted.  Return false if the
     // value was not inserted (perhaps because it is already in the set
     // or because the set has a fixed capacity and is full).
     
-    bool erase(const std::string& value);
+    bool erase(const ItemType& value);
     // Remove the value from the set if present.  Return true if the
     // value was removed; otherwise, leave the set unchanged and
     // return false.
     
-    bool contains(const std::string& value) const;
+    bool contains(const ItemType& value) const;
     // Return true if the value is in the set, otherwise false.
     
-    bool get(int i, std::string& value) const;
+    bool get(int i, ItemType& value) const;
     // If 0 <= i < size(), copy into value an item in the set and
     // return true.  Otherwise, leave value unchanged and return false.
     // (See below for details about this function.)
@@ -37,166 +36,95 @@ public:
     // Exchange the contents of this set with the other one.
     
 private:
-    std::string content;
-    Set* next;
-    //Set* head?
-    //Set* tail?
+
+    ItemType set[DEFAULT_MAX_ITEMS];
+    int m_size;
 };
+
 
 Set::Set()
 {
-    content = ""; //empty data
-    next = nullptr; //doesn't point to anything (or there isn't any previous element...)
+    m_size = 0;
 }
-
 
 bool Set::empty() const
 {
-    int i =0;
-    Set lastStored = *this;
-    while( lastStored.next != nullptr)
-    {
-        i++;
-        lastStored.next = lastStored.next->next;
-    }
-    
-    if(i == 0)
+    if(m_size == 0)
         return true;
-    else
-        return false;
+    
+    return false;
 }
 
-int Set::size() const
+bool Set::insert(const ItemType& value)
 {
     int i =0;
-    Set lastStored = *this;
-    while( lastStored.next != nullptr)
+    for(; i <m_size; i++) //check 0th~m_size item (theoretically up to 199th element)
     {
-        i++;
-        lastStored.next = lastStored.next->next;
-    }
-        return i;
-}
-
-bool Set::insert(const std::string& value)//adding to the end....
-{
-    Set *check = this;
-    //first, we must check for the presence of value in our Set (we look for the newest element first, then go down the list)
-    
-    while(check->next != nullptr)
-    {
-        if(check->content == value)
+        if(set[i] == value)
             return false;
-        
-        check = check->next;
     }
-    
-    Set *last = this;
-    while( last->next != nullptr)
+    if(m_size >= DEFAULT_MAX_ITEMS)
     {
-        last = last->next;
+        return false;
     }
-    //reached the last Set pointer now.
-    
-    Set *newest = new Set;
-    newest->content = value;
-    newest->next = nullptr;
-    last->next = newest;
-    
-    return true;
+    else
+    {
+        set[m_size] = value;
+        m_size++;
+        return true;
+    }
+    return false;
 }
 
-bool Set::erase(const std::string& value)
+bool Set::erase(const ItemType& value)
 {
     if(this->contains(value))
     {
-        //check for the location
-        Set *check = this;
-        
-        while(check->content != value)
+        int pos = 0;
+        for(int i =0; i < m_size; i++) //find the position
         {
-            check = check->next;
-        }
-        if(check->next == nullptr && check->content == value) //case 2: if the value is at the end
-        {
-            Set *check2 = this;
-            while(check2->next->content != value)
+            if(set[i] == value)
             {
-                check2 = check2->next;
+                pos = i;
             }
-            Set *toRemove2 = check2->next->next;
-            delete toRemove2;
-            check2->next = nullptr;
-            return true;
         }
-        //case 1:
-        Set *toRemove = check;
-        check->next = toRemove->next->next;
-        delete toRemove;
         
-    }
-    else
-    {
-        return false;
-    }
-
-    return false;
-}
-
-bool Set::contains(const std::string& value) const
-{
-    string target;
-    Set finder = *this;
-    target = this->content;
-    while(target != value)
-    {
-        finder.next = finder.next->next;
-        target = finder.next->content;
-    }
-    if(target == value)
-        return true;
-
-    return false;
-}
-
-bool Set::get(int i, std::string& value) const //not good code..... can't follow yet... messy.
-{
-    
-    
-    if( i >= 0 && i < this->size())
-    {
-        Set last = *this;
-        for(int k =0; k < this->size() && k < i && k+1 < this->size(); k++)
+        for(;pos+1 < m_size; pos++)
         {
-            
-            last.next = last.next->next; //you are moving to the first element....
+            set[pos] = set[pos+1];
         }
-        value = last.next->content;
+        set[m_size-1] = NULL;
+        m_size--;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool Set::contains(const ItemType& value) const
+{
+    for(int i =0; i < m_size; i++)
+    {
+        if(set[i] == value)
+            return true;
+    }
+    return false;
+}
+
+bool Set::get(int i, ItemType &value) const
+{
+    if(i >= 0 && i < m_size)
+    {
+        value = set[i];
+        return true;
     }
     else
         return false;
-        
-        return false; //temporary
 }
-
-void Set::swap(Set& other)
-{
-    Set temp = *this;
-    *this = other;
-    other = temp;
-}
-
 
 int main()
 {
-    Set ss1;
-    cerr << ss1.empty();
-    
-    ss1.insert("hello");
-    cerr << ss1.size();
-    ss1.insert("hi");
-    cerr <<ss1.size();
-    
     return 0;
 }
-
