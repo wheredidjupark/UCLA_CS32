@@ -17,6 +17,10 @@ class StudentSet
 {
 public:
     StudentSet();       // Create an empty student set.
+    ~StudentSet();
+    StudentSet(const StudentSet& a);
+    
+    StudentSet& operator=(const StudentSet& a);
     
     bool add(unsigned long id);
     // Add a student id to the StudentSet.  Return true if and only if the

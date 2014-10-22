@@ -15,6 +15,25 @@ StudentSet::StudentSet()
     student_item = new Set;
 }
 
+StudentSet::~StudentSet()
+{
+    delete student_item;
+}
+
+StudentSet::StudentSet(const StudentSet& a)
+{
+    student_item = new Set;
+    *student_item = *(a.student_item); //gets the detail of the student_item. don't get the address (i.e. student_item = a.student_item)!!!
+    
+}
+
+StudentSet& StudentSet::operator=(const StudentSet& a)
+{
+    delete student_item;
+    student_item = new Set;
+    *student_item = *(a.student_item);
+    return (*this);
+}
 
 bool StudentSet::add(unsigned long id)
 {

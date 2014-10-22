@@ -93,3 +93,27 @@ bool Set::get(int i, ItemType &value) const
     else
         return false;
 }
+
+void Set::swap(Set& other)
+{
+    int temp_size = other.m_size;
+    ItemType array[temp_size];
+    for(int i=0; i < temp_size; i++)
+    {
+        array[i] = other.set[i];
+    }
+
+    
+    other.m_size = m_size;
+    for(int i =0; i < m_size; i++)
+    {
+        other.set[i] = set[i];
+    }
+    
+    for(int i =0; i < temp_size; i++)
+    {
+        set[i] = array[i];
+    }
+    m_size = temp_size;
+}
+

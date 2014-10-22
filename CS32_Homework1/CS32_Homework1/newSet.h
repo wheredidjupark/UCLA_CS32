@@ -1,14 +1,16 @@
 //
-//  Set.h
+//  newSet.h
 //  CS32_Homework1
 //
 //  Created by Ju Hyeon Park on 10/21/14.
 //  Copyright (c) 2014 Ju Hyeon Park. All rights reserved.
 //
-#ifndef Set_h
-#define Set_h
 
-typedef unsigned long ItemType;  // define Number as a synonym for int //unsigned long
+#ifndef newSet_h
+#define newSet_h
+
+//#include <string>
+typedef unsigned long ItemType;  // define Number as a synonym for int
 
 const int DEFAULT_MAX_ITEMS = 200;
 
@@ -16,6 +18,11 @@ class Set
 {
 public:
     Set();         // Create an empty set.
+    Set(int n);
+    Set(const Set & source);
+
+    ~Set();
+    Set& operator=(const Set& source);
     
     bool empty() const;  // Return true if the set is empty, otherwise false.
     
@@ -45,9 +52,11 @@ public:
     
 private:
     
-    ItemType set[DEFAULT_MAX_ITEMS];
+    ItemType *set;
     int m_size;
+    int m_capacity;
 };
 
 
-#endif /* defined(__CS32_Homework1__Set__) */
+
+#endif
