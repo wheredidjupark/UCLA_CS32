@@ -58,6 +58,7 @@ bool Set::empty() const
 
 Set& Set::operator=(const Set& source)
 {
+    /*
     delete [] set;
     m_size = source.m_size;
     m_capacity = source.m_capacity;
@@ -69,6 +70,14 @@ Set& Set::operator=(const Set& source)
     }
     
    return (*this);
+     */
+    
+    if (this != &source)
+    {
+        Set temp(source);
+        swap(temp);
+    }
+    return *this;
 }
 
 int Set::size() const
@@ -158,7 +167,8 @@ bool Set::get(int i, ItemType& value) const
 
 void Set::swap(Set& other)
 {
-    
+    //long and unnecessary amount of work...
+    /*
     ItemType temp[other.m_capacity]; //stores all other.
     
     for(int i=0; i < other.m_size; i++)
@@ -181,7 +191,13 @@ void Set::swap(Set& other)
     {
         set[i] = temp[i];
     }
+    */
     
+    //shorter version
+    ItemType* tempData = set;
+    set = other.set;
+    other.set = tempData;
+     
     int copy_temp = m_size;
     m_size = other.m_size;
     other.m_size = copy_temp;
