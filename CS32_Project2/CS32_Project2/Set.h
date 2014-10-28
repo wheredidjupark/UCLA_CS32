@@ -35,6 +35,9 @@ private:
     
     Node* m_head;
     int m_size;
+    
+    void createEmptySet();
+    Node *finder(const ItemType& value);
 };
 
 void unite(const Set& s1, const Set& s2, Set& result);

@@ -378,7 +378,7 @@ void testone(int n)
                 int n2 = itemcount() - before;
                 Set s3(s2);
                 int n3 = itemcount() - before;
-                assert(n3 = 2*n2);
+                assert(n3 == 2*n2);
             }
         } break; case 52: {
             s.insert(ARRAY[0]);
@@ -457,7 +457,7 @@ void testone(int n)
                 s3.insert(ARRAY[4]);
                 s3 = s2;
                 int n3 = itemcount() - before;
-                assert(n3 = 2*n2);
+                assert(n3 == 2*n2);
             }
         } break; case 58: {
             s.insert(ARRAY[0]);

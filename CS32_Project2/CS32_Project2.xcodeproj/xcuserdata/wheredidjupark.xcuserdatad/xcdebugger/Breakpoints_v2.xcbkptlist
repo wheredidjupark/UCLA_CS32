@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CS32_Project2/Set.cpp"
-            timestampString = "435894145.833257"
+            timestampString = "436053772.813149"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "Set::~Set()"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,13 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CS32_Project2/Set.cpp"
-            timestampString = "435894145.833257"
+            timestampString = "436053772.813149"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "Set::operator=(const Set&amp; source)"
-            landmarkType = "5">
+            startingLineNumber = "50"
+            endingLineNumber = "50">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
