@@ -1,4 +1,5 @@
 #include <stack>
+#include <queue>
 #include <iostream>
 using namespace std;
 
@@ -124,9 +125,24 @@ int main()
         { 'X','X','X','X','X','X','X','X','X','X'}
     };
     
+    cerr << "  ";
+    for(int x=0; x < ROW_SIZE; x++)
+    {
+        cerr<<x << " ";
+    }
+    cerr <<endl;
+    for(int i=0; i < ROW_SIZE; i++)
+    {
+        cerr << i <<" ";
+        for(int j=0; j <COL_SIZE; j++)
+        {
+            cerr <<maze[i][j] << " ";
+        }
+        cerr <<endl;
+    }
+    cerr <<endl;
     
-    
-    if(pathExists(maze, 6, 4, 1, 1))
+    if(pathExists(maze, 6, 4, 1, 1) == true)
     {
         cout <<"Solvable!\n";
     }
@@ -136,59 +152,122 @@ int main()
     return 0;
 }
 
+//written with the stack.
+/*
 bool pathExists(char maze[][COL_SIZE], int sr, int sc, int er, int ec)
 {
-    stack<Coord> coordStack;
+    if(maze[sr][sc] == WALL)
+        return false;
+    
+    stack<Coord> CoordStack;
     Coord a(sr,sc);
     maze[sr][sc] = DISCOVERED_SPACE;
-    Coord b(er,ec);
-    coordStack.push(a);
+    CoordStack.push(a);
    
-    while (coordStack.empty() == false)
+    while (CoordStack.empty() == false)
     {
-        a = coordStack.top(); //uses the default operator 
-        coordStack.pop();
+        a = CoordStack.top(); //uses the default operator
+        CoordStack.pop();
         
-        if(a.r() == b.r() && a.c() == b.c())
+        if(a.r() == er && a.c() == ec)
         {
             return true;
         }
         
+        
+        //honestly, since the work is repetitive, I can write the insideMaze function to do all of this for me.
         if(insideMaze(maze, a.r()-1 , a.c())) //check north
         {
-            coordStack.push(Coord(a.r()-1, a.c()));
+            CoordStack.push(Coord(a.r()-1, a.c()));
             maze[a.r()-1][a.c()] = DISCOVERED_SPACE;
         }
-        if(insideMaze(maze, a.r(), a.c()+1))
+        if(insideMaze(maze, a.r(), a.c()+1)) //check east
         {
-            coordStack.push(Coord(a.r(), a.c()+1));
+            CoordStack.push(Coord(a.r(), a.c()+1));
             maze[a.r()][a.c()+1] = DISCOVERED_SPACE;
         }
-        if(insideMaze(maze, a.r()+1, a.c()))
+        if(insideMaze(maze, a.r()+1, a.c())) //check south
         {
-            coordStack.push(Coord(a.r()+1, a.c()));
+            CoordStack.push(Coord(a.r()+1, a.c()));
             maze[a.r()+1][a.c()] = DISCOVERED_SPACE;
         }
-        if(insideMaze(maze, a.r(), a.c()-1))
+        if(insideMaze(maze, a.r(), a.c()-1)) //check west
         {
-            coordStack.push(Coord(a.r(), a.c()-1));
+            CoordStack.push(Coord(a.r(), a.c()-1));
             maze[a.r()][a.c()-1] = DISCOVERED_SPACE;
         }
         
     }
     return false;
 }
+*/
+
+
+//written with the queue
+bool pathExists(char maze[][COL_SIZE], int sr, int sc, int er, int ec)
+{
+    cerr <<endl;
+    if(maze[sr][sc] == WALL)
+        return false;
+    
+    int count = 0;
+    queue<Coord> CoordQueue;
+    Coord a(sr,sc);
+    maze[sr][sc] = DISCOVERED_SPACE;
+    CoordQueue.push(a);
+    count++;
+    while(CoordQueue.empty() == false)
+    {
+        
+        a = CoordQueue.front();
+        CoordQueue.pop();
+        cerr <<a.r() << " " <<a.c() <<endl;
+        
+        if(a.r() == er && a.c() == ec)
+        {
+            cerr<<count <<endl; //number of pushes required to solve the puzzle.
+            return true;
+        }
+        
+        if(insideMaze(maze, a.r()-1, a.c()))
+        {
+            CoordQueue.push(Coord(a.r()-1, a.c()));
+            count++;
+            maze[a.r()-1][a.c()] = DISCOVERED_SPACE;
+            
+        }
+        if(insideMaze(maze, a.r(), a.c()+1))
+        {
+            CoordQueue.push(Coord(a.r(), a.c()+1));
+            count++;
+            maze[a.r()][a.c()+1] = DISCOVERED_SPACE;
+        }
+        if(insideMaze(maze, a.r()+1, a.c()))
+        {
+            CoordQueue.push(Coord(a.r()+1, a.c()));
+            count++;
+            maze[a.r()+1][a.c()] = DISCOVERED_SPACE;
+        }
+        if(insideMaze(maze,a.r(), a.c()-1))
+        {
+            CoordQueue.push(Coord(a.r(), a.c()-1));
+            count++;
+            maze[a.r()][a.c()-1] = DISCOVERED_SPACE;
+        }
+    }
+    
+    return false;
+    
+}
 
 bool insideMaze(char maze[][COL_SIZE], int r, int c)
 {
-    if(!(r >= 0 && r < ROW_SIZE && c>= 0 && c < COL_SIZE))
+    if((r >= 0) && (r < ROW_SIZE) && (c>= 0) && (c < COL_SIZE) && (maze[r][c] == SPACE))
     {
-        return false;
+        return true;
     }
     else
     {
-        if (maze[r][c] != WALL && maze[r][c] != DISCOVERED_SPACE)
-            return true;
+        return false;
     }
-    return false;
 }
