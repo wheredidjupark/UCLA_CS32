@@ -1,4 +1,11 @@
-#include <stack>
+//
+//  main.cpp
+//  CS32_Homework2_Problem 3
+//
+//  Created by Ju Hyeon Park on 11/4/14.
+//  Copyright (c) 2014 Ju Hyeon Park. All rights reserved.
+//
+#include <queue>
 #include <iostream>
 using namespace std;
 
@@ -151,54 +158,63 @@ int main()
     return 0;
 }
 
-//written with the stack.
-
+//written with the queue
 bool pathExists(char maze[][COL_SIZE], int sr, int sc, int er, int ec)
 {
+    cerr <<endl;
     if(maze[sr][sc] == WALL)
         return false;
     
-    stack<Coord> CoordStack;
+    int count = 0;
+    queue<Coord> CoordQueue;
     Coord a(sr,sc);
     maze[sr][sc] = DISCOVERED_SPACE;
-    CoordStack.push(a);
-   
-    while (CoordStack.empty() == false)
+    CoordQueue.push(a);
+    count++;
+    while(CoordQueue.empty() == false)
     {
-        a = CoordStack.top(); //uses the default operator
-        CoordStack.pop();
+        
+        a = CoordQueue.front();
+        CoordQueue.pop();
+        cerr <<a.r() << " " <<a.c() <<endl;
         
         if(a.r() == er && a.c() == ec)
         {
+            cerr<<count <<endl; //number of pushes required to solve the puzzle.
             return true;
         }
         
-        
-        //honestly, since the work is repetitive, I can write the insideMaze function to do all of this for me.
-        if(insideMaze(maze, a.r()-1 , a.c())) //check north
+        if(insideMaze(maze, a.r()-1, a.c()))
         {
-            CoordStack.push(Coord(a.r()-1, a.c()));
+            CoordQueue.push(Coord(a.r()-1, a.c()));
+            count++;
             maze[a.r()-1][a.c()] = DISCOVERED_SPACE;
+            
         }
-        if(insideMaze(maze, a.r(), a.c()+1)) //check east
+        if(insideMaze(maze, a.r(), a.c()+1))
         {
-            CoordStack.push(Coord(a.r(), a.c()+1));
+            CoordQueue.push(Coord(a.r(), a.c()+1));
+            count++;
             maze[a.r()][a.c()+1] = DISCOVERED_SPACE;
         }
-        if(insideMaze(maze, a.r()+1, a.c())) //check south
+        if(insideMaze(maze, a.r()+1, a.c()))
         {
-            CoordStack.push(Coord(a.r()+1, a.c()));
+            CoordQueue.push(Coord(a.r()+1, a.c()));
+            count++;
             maze[a.r()+1][a.c()] = DISCOVERED_SPACE;
         }
-        if(insideMaze(maze, a.r(), a.c()-1)) //check west
+        if(insideMaze(maze,a.r(), a.c()-1))
         {
-            CoordStack.push(Coord(a.r(), a.c()-1));
+            CoordQueue.push(Coord(a.r(), a.c()-1));
+            count++;
             maze[a.r()][a.c()-1] = DISCOVERED_SPACE;
         }
-        
-    }
-    return false;
+    } //end of while loop
+    
+    return false; //if the while loop fails, there is no path. 
+    
 }
+
 
 
 bool insideMaze(char maze[][COL_SIZE], int r, int c)
