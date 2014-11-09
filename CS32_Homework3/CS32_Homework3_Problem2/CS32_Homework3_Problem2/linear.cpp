@@ -43,10 +43,27 @@ using namespace std;
      {
          b++;
      }
-     return b + countEmpties(a+1, n-1);
+     return b + countEmpties(a+1, n-1); //b+ previous counts! //we don't have to know what that countEmpties do here! all we know is that it returns the value we want! :D
  
  }
+
+/*
+ if(n==0) //stopping condition to check initially.
+ {
+ return -1;
+ }
+ if(a[0] == "")
+ {
+ return 0;
+ }
  
+ int k = firstEmpty(a+1, n-1); //call the recursive function only if you can't find it. (i.e. recursion stops when we find the desired condition -> a[0] == "" or n==0
+ 
+ if(k ==-1) //if k is still -1 (i.e. it hasn't found
+ return -1;
+ //else...
+ return 1 + k; // we are not considering the 1st element. we consider 1~ n-1 position.
+ */
  // Return the subscript of the first empty string in the array.
  // If no element is empty, return -1.
  int firstEmpty(const string a[], int n)
@@ -88,21 +105,18 @@ if(anyEmpty(a,n) == false)
      
      return n - firstEmpty(a+1, n-1) - check;
         */
+
      
      if(n==0)
-     {
          return -1;
-     }
      if(a[0] == "")
-     {
          return 0;
-     }
-     
-     int k = firstEmpty(a+1, n-1);
-     if(k ==-1) //assume that it has gone through every element and still did not come up with solution => -1
+     //else....
+     int k = firstEmpty(a+1, n-1); //assume k finds the position of the firstempty
+     if(k==-1)
          return -1;
-     //else...
-     return 1 + k;
+     //else... (i.e. if k does give us location of the first empty in the n-1 size array)
+     return 1+k; //then add this first element's location + k-th element.
  }
 
  // Return the subscript of the least string in the array (i.e.,
@@ -110,15 +124,20 @@ if(anyEmpty(a,n) == false)
  // a[k] < a[m].)  If the array has no elements to examine, return -1.
  int indexOfLeast(const string a[], int n)
  {
-     
      if(n==0)
          return -1;
+     if(n==1) //if there is only one element in the array, then you only need to return this...
+         return 0;
      
-     int one = indexOfLeast(a, n/2);
-     int two = indexOfLeast(a + n/2, n-n/2);
-     
-     return ( a[one] < a[two]? one:two);
-
+     int k = indexOfLeast(a+1, n-1); //we first let k find the least string in the n-1 array. we just know it finds it (WITHOUT QUESTION!!!!!)
+     if(a[0] > a[1+k]) //we compare the elements together... (1+k because 1 is the current 0th position of the array)
+     {
+         return 1+k;
+     }
+     else
+     {
+         return 0;
+     }
  }
  
  // If all n2 elements of a2 appear in the n1 element array a1, in
@@ -138,7 +157,43 @@ if(anyEmpty(a,n) == false)
  //    "stan" "kenny" "kenny"
  bool includes(const string a1[], int n1, const string a2[], int n2)
  {
- return false;  // This is not always correct.
+     if(n2 <= 0)
+         return true;
+     if(n2 > n1)
+         return false;
+     bool k;
+     if(a1[0] == a2[0])
+     {
+         k = includes(a1+1, n1-1, a2,n2); //let this check for last 'n1-1' elements of the a1 array
+     }
+     else
+     {
+         k = includes(a1, n1, a2+1, n2-1);
+     }
+     return k;
+     
+     /*
+if(n2 == 0)
+    return true;
+     
+
+     bool k = includes(a1,n1, a2+1, n2-1); //let's say k helps us find whether last n2-1 elements are contained in order
+     //so we can focus on a2[0]
+     if(n1 == 0)
+         return false; //why false? a2 is nonempty but a1 is empty!
+     else
+     {
+         if(a2[0] == a1[0])
+             return true;
+         else
+         {
+             return includes(a1+1, n1-1, a2, n2); //this looks
+         }
+     }
+     
+     return k;
+      */
+     
  }
 
 int main()

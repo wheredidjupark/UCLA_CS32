@@ -76,6 +76,20 @@ void printArr(int arr[], int size)
     printArr(arr+1, size-1);
 }
 
+int count(int a[], int size, int num) //counts how many times num is contained in the array
+{
+    if(size == 0) //if the size of the array is zero, there is nothing to count.
+        return 0;
+    //else...
+    
+    int total = count(a+1,size-1,num); //we are not going to let the total do all the work....
+    if(a[0] == num) //and we focus only one our current element.. if we find
+        ++total;
+    
+    return total;
+    
+    
+}
 
 int main()
 {
@@ -87,6 +101,14 @@ int main()
     printArr(arr, 6);
     
     cout <<std::endl;
-    cout << std::max(1,2);
+    cout << std::max(1,2) <<std::endl;;
+    
+    const int size =5;
+    int array[size] ={7,9,6,7,7};
+    
+    cout << count(array,size,7);
     return 0;
+
+    
+    
 }
