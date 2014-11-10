@@ -30,7 +30,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "172"
-            endingLineNumber = "172">
+            endingLineNumber = "172"
+            landmarkName = "pathExists(char maze[][COL_SIZE], int sr, int sc, int er, int ec)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -44,7 +46,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "171"
-            endingLineNumber = "171">
+            endingLineNumber = "171"
+            landmarkName = "pathExists(char maze[][COL_SIZE], int sr, int sc, int er, int ec)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,7 +62,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "169"
-            endingLineNumber = "169">
+            endingLineNumber = "169"
+            landmarkName = "pathExists(char maze[][COL_SIZE], int sr, int sc, int er, int ec)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

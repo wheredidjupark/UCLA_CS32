@@ -87,8 +87,6 @@ int count(int a[], int size, int num) //counts how many times num is contained i
         ++total;
     
     return total;
-    
-    
 }
 
 int main()
