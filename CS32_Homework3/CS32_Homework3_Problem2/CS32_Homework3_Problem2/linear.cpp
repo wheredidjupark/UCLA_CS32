@@ -161,16 +161,15 @@ if(anyEmpty(a,n) == false)
          return true;
      if(n2 > n1)
          return false;
-     bool k;
+
      if(a1[0] == a2[0])
      {
-         k = includes(a1+1, n1-1, a2,n2); //let this check for last 'n1-1' elements of the a1 array
+         return includes(a1+1, n1-1, a2+1,n2-1); //let this check for last 'n1-1' elements of the a1 array
      }
      else
      {
-         k = includes(a1, n1, a2+1, n2-1);
+         return includes(a1, n1, a2+1, n2-1); //move to the next element.
      }
-     return k;
      
      /*
 if(n2 == 0)
