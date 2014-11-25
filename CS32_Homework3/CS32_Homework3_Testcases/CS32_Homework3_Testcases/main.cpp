@@ -154,20 +154,22 @@ int indexOfLeast(const string a[], int n)
 //    "stan" "kenny" "kenny"
 bool includes(const string a1[], int n1, const string a2[], int n2)
 {
+    
     if(n2 <= 0)
         return true;
     if(n2 > n1)
         return false;
 
+     bool k;
     if(a1[0] == a2[0])
     {
-        return includes(a1+1, n1-1, a2+1,n2-1); //let this check for last 'n1-1' elements of the a1 array
+        k= includes(a1+1, n1-1, a2+1,n2-1); //let this check for last 'n1-1' elements of the a1 array
     }
     else
     {
-        return includes(a1, n1, a2+1, n2-1); //move to the next element.
+        k= includes(a1+1, n1-1, a2, n2); //move to the next element.
     }
-
+    return k;
     
 }
 
@@ -212,17 +214,19 @@ bool pathExists(char maze[][COL_SIZE], int sr, int sc, int er, int ec)
 
 int countIncludes(const string a1[], int n1, const string a2[], int n2)
 {
+    if(n2 <= 0 && n1 >= 0) //empty source sequence (i.e. n2=0) appears in a sequence of length n1 in 1 way.
+        return 1;
     if(n1 <= 0) //empty identifier sequence cannot be compared to the source sequence, a2.
         return 0;
-    if(n2 <= 0) //empty source sequence (i.e. n2=0) appears in a sequence of length n1 in 1 way.
-        return 1;
     if(n2 > n1)
         return 0;
+    
+    
     int count;
     
     if(a1[0] == a2[0])
     {
-        count = countIncludes(a1+1,n1-1 ,a2+1 ,n1+1) + countIncludes(a1+1, n1-1, a2, n2);// the first part calculates for the first combo possibility the second accounts for other possibilities
+        count = countIncludes(a1+1,n1-1 ,a2+1 ,n2-1) + countIncludes(a1+1, n1-1, a2, n2);// the first part calculates for the first combo possibility the second accounts for other possibilities
     }
     else
     {
@@ -296,13 +300,15 @@ void takeSides(string a[], int n, string barrier, int& firstNotLess, int& firstG
 // If n <= 1, do nothing.
 void order(string a[], int n)
 {
+    //attempt 1
     if(n<= 1)
         return;
     
-    order(a,n-1); //organizes all the first n-1 elements for you! (i.e. a[0] <= a[1] <= a[2] <= a[3] <= ... a[n-2]
+    order(a+1,n-1); //organizes all the first n-1 elements for you! (i.e. a[0] <= a[1] <= a[2] <= a[3] <= ... a[n-2]
     int firstNotLess = 0;
     int firstGreater = n;
-    takeSides(a, n, a[n-1], firstNotLess, firstGreater);
+    takeSides(a, n, a[0], firstNotLess, firstGreater); //problem! How do you know it will place them in order?
+    
     
 }
 
@@ -509,6 +515,7 @@ void testone(int n)
         } break; case 58: {
             assert(countIncludes(c, 7, d, 0) == 1);
         } break; case 59: {
+            cerr << countIncludes(c, 0, d, 0);
             assert(countIncludes(c, 0, d, 0) == 1);
         } break; case 60: {
             order(d, 12);

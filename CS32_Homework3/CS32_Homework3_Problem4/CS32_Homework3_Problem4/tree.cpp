@@ -1,5 +1,6 @@
 
 #include <string>
+#include <iostream>
 using namespace std;
 
 
@@ -109,10 +110,10 @@ int countIncludes(const string a1[], int n1, const string a2[], int n2)
 if(n<= 1)
     return;
      
-     order(a,n-1); //organizes all the first n-1 elements for you! (i.e. a[0] <= a[1] <= a[2] <= a[3] <= ... a[n-2]
+     order(a+1,n-1); //organizes all the first n-1 elements for you! (i.e. a[0] <= a[1] <= a[2] <= a[3] <= ... a[n-2]
      int firstNotLess = 0;
      int firstGreater = n;
-     takeSides(a, n, a[n-1], firstNotLess, firstGreater);
+     takeSides(a, n, a[0], firstNotLess, firstGreater); //but how do you know whether this will arrange it so that they are in the right order? it only guarantees that
 
  }
  
@@ -125,5 +126,12 @@ if(n<= 1)
 
 int main()
 {
+    size_t size = 4;
+    string a[4] = { "b" , "a", "c", "a"};
+    order(a, size);
+    for(int i = 0; i < size; i++)
+    {
+        std::cout << a[i];
+    }
     return 0;
 }

@@ -68,44 +68,6 @@ using namespace std;
  // If no element is empty, return -1.
  int firstEmpty(const string a[], int n)
  {
-    /*
-     if(anyEmpty(a,n) == false)
-         return -1;
-
-     if(n==0)
-         return -1;
-    
-     int pos =0;
-     if(a[n-1] == "")
-     {
-         pos = n-1;
-     }
-     else
-     {
-         pos = firstEmpty(a, n-1);
-     }
-     
-     return pos;
-     */
- 
-     /*
-     if(n ==0)
-         return -1;
-if(anyEmpty(a,n) == false)
-{
-    return -1;
-}
-     
-     int check = 0;
-     if(a[0] == "")
-     {
-         check = 1;
-     }
-     else check =0;
-     
-     return n - firstEmpty(a+1, n-1) - check;
-        */
-
      
      if(n==0)
          return -1;
@@ -168,9 +130,10 @@ if(anyEmpty(a,n) == false)
      }
      else
      {
-         return includes(a1, n1, a2+1, n2-1); //move to the next element.
+         return includes(a1+1, n1-1, a2, n2); //move to the next element.
      }
      
+     //attempt 1: doesn't work..
      /*
 if(n2 == 0)
     return true;
