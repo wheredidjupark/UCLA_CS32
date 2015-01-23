@@ -1,4 +1,5 @@
 UCLA CS32: Introduction to Computer Science II
+
 Professors: David Smallberg & Carey Nachenberg
 
 #Learning Resources: 
