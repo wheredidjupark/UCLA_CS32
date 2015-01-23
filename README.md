@@ -9,4 +9,4 @@ Professors: David Smallberg & Carey Nachenberg
 
 3. http://www.cs.ucla.edu/classes/winter15/cs32/ (latest website that contains available web resources)
 
-4. http://careynachenberg.weebly.com/careys-slides.html
+4. http://careynachenberg.weebly.com/careys-slides.html (you can find all the lecture slides here)
